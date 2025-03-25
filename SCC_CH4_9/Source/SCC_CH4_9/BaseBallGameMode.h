@@ -33,6 +33,21 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "BaseballGame")
 	bool WinCheck(FString Message);
 
+	UFUNCTION(BlueprintCallable, Category = "BaseballGame")
+	void StartTimer();
+
+	UFUNCTION(BlueprintCallable, Category = "BaseballGame")
+	void ClearTimer();
+
+	UFUNCTION(BlueprintCallable, Category = "BaseballGame")
+	void EndTimer();
+
+	UFUNCTION(BlueprintCallable, Category = "BaseballGame")
+	void GetRemainTime();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "MyEvents")
+	void ResetValues();
+
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "BaseballGame")
 	int32 Result = 0;
@@ -44,4 +59,13 @@ public:
 	int32 HostCount;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "BaseballGame")
 	int32 GuestCount;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "BaseballGame")
+	int32 HostWinCount = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "BaseballGame")
+	int32 GuestWinCount = 0;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "BaseballGame")
+	FTimerHandle Timer;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "BaseballGame")
+	float RemainingTime = 10.f;
 };

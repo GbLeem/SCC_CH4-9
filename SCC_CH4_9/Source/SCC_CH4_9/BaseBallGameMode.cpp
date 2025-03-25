@@ -49,8 +49,6 @@ FString ABaseBallGameMode::GetResult(FString Message)
 	Res -= (Res / 10) * 10;
 	Temp.Add(Res);
 
-	//GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, FString::Printf(TEXT("%d %d %d"), Temp[0], Temp[1], Temp[2]));
-
 	for (int i = 0; i < Temp.Num(); ++i)
 	{
 		//if find
@@ -127,4 +125,28 @@ bool ABaseBallGameMode::WinCheck(FString Message)
 		return true;	
 	else
 		return false;
+}
+
+void ABaseBallGameMode::StartTimer()
+{
+	GetWorldTimerManager().SetTimer(Timer, this, &ABaseBallGameMode::EndTimer, 10.f, false);
+}
+
+void ABaseBallGameMode::ClearTimer()
+{
+	GetWorldTimerManager().ClearTimer(Timer);
+	StartTimer();
+}
+
+void ABaseBallGameMode::EndTimer()
+{
+	TurnIndex++;
+	ClearTimer();
+	StartTimer();
+	ResetValues();
+}
+
+void ABaseBallGameMode::GetRemainTime()
+{
+	RemainingTime = GetWorldTimerManager().GetTimerRemaining(Timer);
 }
