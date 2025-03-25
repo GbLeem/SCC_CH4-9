@@ -147,7 +147,7 @@ void ABaseBallGameMode::EndTimer()
 		GuestCount--;
 
 	ClearTimer();
-	StartTimer();
+	//StartTimer();
 	ResetValues();
 }
 
