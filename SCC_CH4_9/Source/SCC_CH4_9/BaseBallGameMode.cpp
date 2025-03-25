@@ -141,6 +141,11 @@ void ABaseBallGameMode::ClearTimer()
 void ABaseBallGameMode::EndTimer()
 {
 	TurnIndex++;
+	if (TurnIndex % 2 == 0)
+		HostCount--;
+	else
+		GuestCount--;
+
 	ClearTimer();
 	StartTimer();
 	ResetValues();
